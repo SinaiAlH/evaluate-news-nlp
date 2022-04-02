@@ -1,3 +1,5 @@
+// Bring window.fetch to Node.js
+const fetch = require('node-fetch');
 //
 const dotenv = require('dotenv');
 dotenv.config();
@@ -5,6 +7,7 @@ dotenv.config();
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
+
 
 const app = express()
 
@@ -24,10 +27,10 @@ app.listen(8080, function () {
 })
 
 app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
+    const response = fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&lang=en&txt=${req.query.text}`)
+      .then(response =>  
+        response.json()
+      )
+      .then(body => res.send(body))
+      .catch(error => console.log('error', error));
 })
-
-//API credential statement
-var textapi =new aylien({
-    application_key: process.env.API_KEY
-  });
