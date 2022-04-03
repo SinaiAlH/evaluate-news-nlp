@@ -1,7 +1,6 @@
 import { checkForName } from "./nameChecker";
 
 const submitHandler = document.getElementById('submit');
-console.log("test");
 
 function handleSubmit(event) {
     event.preventDefault();
