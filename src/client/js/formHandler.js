@@ -13,7 +13,13 @@ function handleSubmit(event) {
     fetch(`http://localhost:8080/test?text=${formText}`)
     .then(res => res.json())
     .then(function(res) {
-        document.getElementById('results').innerHTML = res.agreement;
+        document.getElementById('results').innerHTML = `
+        Agreement: ${res.agreement},
+        Subjectivity: ${res.subjectivity},
+        Confidence: ${res.confidence},
+        Score tag: ${res.score_tag},
+        Irony: ${res.irony}
+        `;
     })
 }
 
