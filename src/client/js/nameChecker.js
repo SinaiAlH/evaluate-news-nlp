@@ -1,5 +1,7 @@
-function checkForName(inputText) {
-    console.log("::: Running checkForName :::", inputText);
+// Mock Data: For initial route setup testing
+
+export function checkForName(inputText) {
+
     let names = [
         "Picard",
         "Janeway",
@@ -9,10 +11,10 @@ function checkForName(inputText) {
     ]
 
     if (names.includes(inputText)) {
+
         return true;
     } else {
         return false;
     }
-}
 
-export { checkForName }
+}

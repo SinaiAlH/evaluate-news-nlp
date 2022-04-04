@@ -1,5 +1,6 @@
 import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
+import { urlChecker } from './js/urlChecker';
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -9,4 +10,10 @@ if ('serviceWorker' in navigator) {
         console.log('SW registration failed: ', registrationError);
         });
     });
+}
+
+export {
+    checkForName,
+    handleSubmit,
+    urlChecker
 }

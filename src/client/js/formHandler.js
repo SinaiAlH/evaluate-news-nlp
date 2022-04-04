@@ -9,6 +9,15 @@ function handleSubmit(event) {
     let formText = document.getElementById('name').value
     checkForName(formText);
 
+    if (urlChecker(formText) === false) {
+
+        alert('Please enter an url.');
+
+        // Discontinue if the above if statement is true
+
+        return;
+    }
+
     console.log("::: Form Submitted :::")
     fetch(`http://localhost:8080/test?text=${formText}`)
     .then(res => res.json())
