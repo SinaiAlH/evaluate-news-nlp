@@ -1,4 +1,4 @@
-import { checkForName } from "./nameChecker";
+import { urlChecker } from "./urlChecker";
 
 const submitHandler = document.getElementById('submit');
 
@@ -7,7 +7,6 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    checkForName(formText);
 
     if (urlChecker(formText) === false) {
 
