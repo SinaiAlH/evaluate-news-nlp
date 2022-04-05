@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -30,6 +30,21 @@ module.exports = {
         new WorkboxPlugin.GenerateSW({
             clientsClaim: true,
             skipWaiting: true,
-        })
+            swDest: 'sw.js',
+            globDirectory: './httpdocs',
+            globPatterns: ['**/*.{html,css}'],
+            // sourcemap: true,
+            exclude: [/\.(?:png|jpg|jpeg|svg)$/], // from precaching
+            runtimeCaching: [
+              { // runtime cache for images
+                urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+                handler: 'CacheFirst',
+                options: {
+                  expiration: { maxEntries: 10 },
+                  cacheName: 'images',
+                },
+              },
+            ],
+          })
     ]
 }
